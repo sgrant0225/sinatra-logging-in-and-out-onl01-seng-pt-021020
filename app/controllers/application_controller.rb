@@ -6,11 +6,11 @@ class ApplicationController < Sinatra::Base
     set :session_secret, "secret"
   end
 
-  get '/' do
+  get '/' do #mainpage #shows login form to user
     erb :index
   end
 
-  post '/login' do
+  post '/login' do #once user submit form stores info in params
    @user = User.find_by(username: params[:username], password: params[:password])
     if @user
       session[:user_id] = @user.id
