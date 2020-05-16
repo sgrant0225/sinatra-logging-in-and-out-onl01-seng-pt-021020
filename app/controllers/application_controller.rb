@@ -10,10 +10,11 @@ class ApplicationController < Sinatra::Base
     erb :index
   end
 
-  post '/login' do #once user submit form
+  post '/login' do #once user submit form stores info in params
    @user = User.find_by(username: params[:username], password: params[:password])
     if @user
       session[:user_id] = @user.id
+      binding.pry
       redirect to '/account'
     else
       erb :error
